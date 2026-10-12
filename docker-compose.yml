@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEOX_RPC_URL=${NEOX_RPC_URL:-https://mainnet-1.rpc.banelabs.org}
+      - NEOX_NETWORK=${NEOX_NETWORK:-mainnet}
+      - NEO_N3_RPC_URL=${NEO_N3_RPC_URL:-}
+      - DATABASE_PATH=/data/neox-observatory.db
+      - API_PORT=3000
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - neox-data:/data
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  neox-data:

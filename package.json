@@ -1,0 +1,43 @@
+{
+  "name": "neox-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only observability and developer tooling for Neo X",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace=@neox-observatory/api",
+    "dev:web": "npm run dev --workspace=@neox-observatory/web",
+    "build": "tsc -b tsconfig.json && npm run build --workspace=@neox-observatory/web",
+    "build:api": "tsc -b apps/api",
+    "build:packages": "tsc -b packages/core packages/sdk packages/cli",
+    "build:web": "npm run build --workspace=@neox-observatory/web",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -b tsconfig.json && npm run typecheck --workspace=@neox-observatory/web && tsc -p tsconfig.test.json",
+    "test": "npm run test --workspaces --if-present",
+    "test:live": "cross-env LIVE_TESTS=1 npm run test --workspaces --if-present",
+    "start": "npm run build:api && node apps/api/dist/index.js",
+    "cli": "tsc -b packages/cli && node packages/cli/dist/index.js",
+    "db:init": "tsc -b packages/core && node packages/core/dist/db/init.js",
+    "indexer:once": "tsc -b packages/core && node packages/core/dist/indexer/run-once.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

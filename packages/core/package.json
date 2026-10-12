@@ -1,0 +1,38 @@
+{
+  "name": "@neox-observatory/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Core Neo X RPC client, indexing, decoding and storage primitives",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "dev": "tsc -b tsconfig.json --watch",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -b tsconfig.json",
+    "test": "vitest run",
+    "test:live": "cross-env LIVE_TESTS=1 vitest run src/**/*.live.test.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
+    "pino": "^9.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^20.12.12",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

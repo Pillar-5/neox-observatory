@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "types": [
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@neox-observatory/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@neox-observatory/sdk": [
+        "packages/sdk/src/index.ts"
+      ],
+      "@neox-observatory/cli": [
+        "packages/cli/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*",
+    "apps/api/src/**/*",
+    "apps/web/src/**/*",
+    "tests/**/*",
+    "examples/**/*",
+    "scripts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist/**",
+    "apps/web/src/**/*.tsx"
+  ]
+}

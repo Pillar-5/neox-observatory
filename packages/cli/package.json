@@ -1,0 +1,31 @@
+{
+  "name": "@neox-observatory/cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Command line interface for NeoX Observatory",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "neox-observatory": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "dev": "tsc -b tsconfig.json --watch",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -b tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@neox-observatory/core": "*",
+    "@neox-observatory/sdk": "*",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
